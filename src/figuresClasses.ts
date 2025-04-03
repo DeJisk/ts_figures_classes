@@ -13,11 +13,25 @@ export class Triangle implements Figure {
     public b: number,
     public c: number,
   ) {
+    if (a <= 0) {
+      throw new Error('Side a must be larger than 0');
+    }
+
+    if (b <= 0) {
+      throw new Error('Side b must be larger than 0');
+    }
+
+    if (c <= 0) {
+      throw new Error('Side c must be larger than 0');
+    }
+
     const max: number = Math.max(a, b, c);
     const sum: number = a + b + c - max;
 
-    if (a <= 0 || b <= 0 || c <= 0 || max >= sum) {
-      throw new Error('incorrect input of data, side must be larger than 0');
+    if (max >= sum) {
+      throw new Error(
+        'The sum of the two smaller sides must be larger than the largest side'
+      );
     }
   }
 
@@ -37,7 +51,7 @@ export class Circle implements Figure {
     public radius: number,
   ) {
     if (radius <= 0) {
-      throw new Error('incorrect input of data, radius must be larger than 0');
+      throw new Error('radius must be larger than 0');
     }
   }
 
@@ -56,8 +70,12 @@ export class Rectangle implements Figure {
     public width: number,
     public height: number,
   ) {
-    if (width <= 0 || height <= 0) {
-      throw new Error('incorrect input of data, side must be larger than 0');
+    if (width <= 0) {
+      throw new Error('width must be larger than 0');
+    }
+
+    if (height <= 0) {
+      throw new Error('height must be larger than 0');
     }
   }
 
